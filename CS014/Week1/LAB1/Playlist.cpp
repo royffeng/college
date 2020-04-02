@@ -1,17 +1,16 @@
-#include <bits / stdc++.h>
+#include <iostream>
+#include <iomanip>
 #include "Playlist.h"
 
 using namespace std;
 
 PlaylistNode::PlaylistNode() : uniqueID("none"), songName("none"), artistName("none"), songLength(0), nextNodePtr(nullptr) {}
 
-PlaylistNode::PlaylistNode(string uniqueID, string songName, string artistName, int songLength){
+PlaylistNode::PlaylistNode(string uniqueID, string songName, string artistName, int songLength) {
     this->uniqueID = uniqueID;
     this->songName = songName;
     this->artistName = artistName;
     this->songLength = songLength;
-
-    nextNodePtr = nullptr;
 }
 
 void PlaylistNode::InsertAfter(PlaylistNode* node) {
@@ -55,9 +54,10 @@ Playlist::Playlist() : head(nullptr), tail(nullptr) {}
 
 void Playlist::print(string title) const {
     cout << title << " - OUTPUT FULL PLAYLIST\n";
-    if(empty()) {
+    if (empty()) {
         cout << "Playlist is empty\n";
-    }else {
+    }
+    else {
         int counter = 1;
         PlaylistNode* node = head;
         while (node) {
@@ -75,10 +75,11 @@ bool Playlist::empty() const {
 }
 
 void Playlist::push_back(PlaylistNode* node) {
-    if(empty()) {
+    if (empty()) {
         head = node;
         tail = node;
-    }else {
+    }
+    else {
         tail->SetNext(node);
         tail = node;
     }
@@ -93,7 +94,7 @@ PlaylistNode* Playlist::remove(string id) {
         currPointer = currPointer->GetNext();
     }
 
-    if(currPointer) {
+    if (currPointer) {
         if (prevPointer) {
             prevPointer->SetNext(currPointer->GetNext());
         }
@@ -106,7 +107,8 @@ PlaylistNode* Playlist::remove(string id) {
         }
 
         return currPointer;
-    }else {
+    }
+    else {
         return nullptr;
     }
 }
@@ -116,31 +118,33 @@ void Playlist::changePos(int initialPos, int newPos) {
     PlaylistNode* prev = nullptr;
     PlaylistNode* curr = head;
 
-    if(initialPos < 1) {
+    if (initialPos < 1) {
         cout << "Invalid current position.\n";
         return;
     }
 
     //Find the songPosition
-    while(initialIndex < initialPos) {
-        if(curr) {
+    while (initialIndex < initialPos) {
+        if (curr) {
             prev = curr;
             curr = curr->GetNext();
             initialIndex++;
 
-            if(!curr) {
+            if (!curr) {
                 cout << "Invalid current position.\n";
                 return;
             }
-        }else {
+        }
+        else {
             cout << "Invalid current position.\n";
             return;
         }
     }
 
-    if(prev) {
+    if (prev) {
         prev->SetNext(curr->GetNext());
-    }else {
+    }
+    else {
         head = curr->GetNext();
     }
 
@@ -148,7 +152,7 @@ void Playlist::changePos(int initialPos, int newPos) {
         tail = prev;
     }
 
-    if(newPos <= 1) {
+    if (newPos <= 1) {
         if (empty()) {
             tail = curr;
         }
