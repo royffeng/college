@@ -1,4 +1,4 @@
-//This entire header file was coded by LePendu, provided through the slack workspace
+//This header file was coded by LePendu, provided through the slack workspace
 
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
@@ -7,11 +7,12 @@ using namespace std;
 class PlaylistNode {
 public:
     PlaylistNode();
-    PlaylistNode(string initID, ... HIDDEN..., PlaylistNode* nextLoc = 0);
-    void InsertAfter(... HIDDEN...);
+    PlaylistNode(string, string, string, int, PlaylistNode* nextLoc = 0);
+    void InsertAfter(PlaylistNode*);
     void SetNext(PlaylistNode* nodePtr);
-    ... HIDDEN...
-        string GetArtistName() const;
+    string GetID() const;
+    string GetSongName() const;
+    string GetArtistName() const;
     int GetSongLength() const;
     PlaylistNode* GetNext();
     void PrintPlaylistNode();
